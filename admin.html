@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Shree Sachin Mobile Center</title>
+<style>
+:root{--blue:#0a7cff;--navy:#0a1f44;--bg:#f4f7fc;--line:#d9e2f0;--ink:#111827;--mut:#6b7280;--ok:#16a34a;--red:#e11d48}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:84px}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+textarea{resize:vertical;min-height:70px}
+img{max-width:100%;display:block}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px}
+/* top bar */
+.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;height:62px}
+.brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.brand svg,.brand img{width:40px;height:40px;flex:none}
+.brand b{display:block;font-weight:900;color:var(--navy);font-size:15px;line-height:1.1}
+.brand small{display:block;color:var(--blue);font-weight:700;font-size:10px;letter-spacing:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:10px;background:var(--blue);color:#fff;font-weight:600}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn.wa{background:#25d366}
+.btn.red{background:var(--red)}
+.btn.sm{padding:6px 10px;font-size:13px;border-radius:8px}
+.btn.block{width:100%}
+.contact{position:relative}
+.menu{position:absolute;right:0;top:46px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px #0002;min-width:210px;display:none;overflow:hidden}
+.menu.open{display:block}
+.menu a{display:block;padding:12px 14px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line);font-size:14px}
+.menu a:last-child{border:0}
+.menu a:hover{background:#eef5ff}
+.ibtn{position:relative;font-size:22px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center}
+.cnt{position:absolute;top:0;right:0;background:var(--red);color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 4px}
+/* search */
+.search{margin:14px 0;display:flex;align-items:center;gap:8px;border:1.5px solid var(--navy);border-radius:22px;padding:2px 14px;background:#fff}
+.search input{border:0;padding:10px 0;outline:0}
+.hello{margin-top:12px;font-size:13px;color:#444}
+.hello b{display:block;font-size:20px;color:var(--ink)}
+/* hero */
+.hero{position:relative;border-radius:16px;overflow:hidden;min-height:170px;background:linear-gradient(120deg,#0a3a8a,#6aa3ff);color:#fff}
+.slide{display:none;padding:20px;min-height:170px;position:relative}
+.slide.on{display:block}
+.slide .tag{display:inline-block;background:#fff;color:var(--navy);font-weight:800;font-size:11px;padding:3px 10px;border-radius:12px}
+.slide h2{font-size:24px;margin:8px 0 2px;font-weight:900}
+.slide p{font-weight:700;font-size:14px;max-width:62%}
+.slide .pct{font-size:14px;margin-top:4px;font-weight:700}
+.slide .pct b{font-size:34px;color:#ffe14d}
+.slide .btn{margin-top:8px;background:#fff;color:var(--ink)}
+.slide .pics{position:absolute;right:10px;bottom:6px;display:flex;gap:4px;align-items:flex-end}
+.slide .pics img{width:64px;height:86px;object-fit:cover;border-radius:10px;border:2px solid #fff;background:#fff}
+.dots{position:absolute;bottom:8px;left:50%;display:flex;gap:6px;transform:translateX(-50%)}
+.dots i{width:8px;height:8px;border-radius:50%;background:#fff6}
+.dots i.on{background:#fff}
+/* categories */
+.cats{display:flex;gap:10px;overflow:auto;padding:14px 0 6px;scrollbar-width:none}
+.cat{flex:none;width:68px;text-align:center;font-size:11px}
+.cat span{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 4px;border:1.5px solid var(--navy);border-radius:12px;font-size:24px;background:#fff}
+.cat.on span{background:var(--blue);border-color:var(--blue)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px}
+.sec h3{font-size:16px}
+.sec a{color:var(--blue);font-size:13px;cursor:pointer;text-decoration:none}
+/* products */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1.5px solid var(--navy);border-radius:18px;padding:10px;position:relative;display:flex;flex-direction:column}
+.card .im{aspect-ratio:1;border-radius:12px;overflow:hidden;background:#eef3fb;cursor:pointer}
+.card .im img{width:100%;height:100%;object-fit:cover}
+.card h4{font-size:13.5px;margin-top:8px;text-align:center;font-weight:600;cursor:pointer}
+.card .meta{display:flex;justify-content:center;gap:8px;font-size:11px;color:var(--mut)}
+.price{text-align:center;color:var(--blue);font-weight:800;font-size:14px;margin:2px 0 6px}
+.price s{display:block;color:var(--mut);font-weight:400;font-size:11px}
+.off{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;z-index:2}
+.heart{position:absolute;top:6px;right:8px;font-size:19px;z-index:2;background:#fffc;border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+.card .row{display:flex;gap:6px;margin-top:auto}
+.card .row .btn{flex:1;padding:7px 4px;font-size:12px;border-radius:8px}
+.gift{font-size:10.5px;text-align:center;color:var(--ok);font-weight:700;margin-bottom:4px}
+.oos{opacity:.55}
+/* free accessories */
+.free{background:#c9d1ff;border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center}
+.free .pics{display:flex;gap:6px;flex:1;overflow:auto}
+.free .pics img{width:78px;height:78px;object-fit:cover;border-radius:12px;border:2px solid #fff;background:#fff;flex:none}
+.free h3{font-size:18px;font-weight:900}
+.free p{font-size:12px;font-weight:600;margin:4px 0 8px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.trust div{border:1.5px solid var(--navy);border-radius:8px;padding:8px 4px;font-size:11px;text-align:center;font-weight:600;background:#fff}
+/* bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);z-index:30}
+.nav .wrap{display:flex;justify-content:space-around;align-items:flex-end;height:64px}
+.nav button{font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 10px;position:relative}
+.nav button i{font-style:normal;font-size:22px}
+.nav .plus{width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;font-size:30px;margin-top:-22px;border:5px solid #dcecff;display:grid;place-items:center;padding:0}
+/* drawer & modal */
+.ov{position:fixed;inset:0;background:#0007;z-index:50;display:none}
+.ov.open{display:block}
+.drawer{position:absolute;right:0;top:0;bottom:0;width:min(440px,100%);background:#fff;display:flex;flex-direction:column}
+.drawer header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:17px}
+.drawer .body{flex:1;overflow:auto;padding:12px 16px}
+.drawer footer{padding:12px 16px;border-top:1px solid var(--line);display:grid;gap:8px}
+.ci{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.ci img{width:62px;height:62px;border-radius:10px;object-fit:cover;flex:none}
+.ci .t{flex:1;min-width:0;font-size:13px}
+.ci .t b{display:block}
+.qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);font-weight:700}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,94%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;padding:16px}
+.gal{display:flex;gap:6px;overflow:auto;margin:8px 0}
+.gal img{width:70px;height:70px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+.main-im{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;background:#eef3fb}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:16px}
+.note{font-size:12px;color:var(--mut)}
+.empty{text-align:center;color:var(--mut);padding:30px 0}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:20px;font-size:13px;z-index:99;opacity:0;transition:.25s;pointer-events:none}
+.toast.on{opacity:1}
+.foot{text-align:center;color:var(--mut);font-size:12px;padding:20px 0}
+.fab-wa{position:fixed;right:14px;bottom:84px;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:28px;z-index:29;box-shadow:0 6px 18px #0003;text-decoration:none}
+
+</style>
+<style>
+body{padding-bottom:30px}
+.login{max-width:380px;margin:12vh auto;background:#fff;border-radius:18px;padding:24px;display:grid;gap:12px;box-shadow:0 10px 40px #0001}
+.tabs{display:flex;gap:6px;overflow:auto;margin:14px 0}
+.tabs button{padding:9px 14px;border-radius:20px;border:1px solid var(--line);background:#fff;font-weight:600;white-space:nowrap}
+.tabs button.on{background:var(--blue);color:#fff;border-color:var(--blue)}
+.panel{background:#fff;border-radius:16px;padding:16px;margin-bottom:14px;border:1px solid var(--line)}
+.panel h3{margin-bottom:10px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+label{font-size:12px;font-weight:700;color:#334;display:block;margin-bottom:3px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.stat{background:#eef5ff;border-radius:12px;padding:12px}.stat b{font-size:24px;display:block}
+.flow{display:grid;gap:8px}
+.step{display:flex;gap:10px;align-items:flex-start;background:#f7faff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14px}
+.step i{font-style:normal;background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;flex:none}
+.pl{display:flex;gap:10px;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}
+.pl img{width:56px;height:56px;border-radius:10px;object-fit:cover;flex:none}
+.pl .t{flex:1;min-width:0;font-size:13px}
+.thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.thumbs div{position:relative}.thumbs img{width:70px;height:70px;object-fit:cover;border-radius:10px}
+.thumbs button{position:absolute;top:-6px;right:-6px;background:var(--red);color:#fff;border-radius:50%;width:20px;height:20px;font-size:12px}
+.pub{position:sticky;top:0;z-index:20;background:#fff7e0;border:1px solid #f1d98a;border-radius:12px;padding:10px 12px;margin:10px 0;font-size:13px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.pub.ok{background:#e9f9ee;border-color:#a8e0b8}
+.hide{display:none!important}
+@media(max-width:560px){.f3,.f2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div id="loginBox" class="login">
+  <h2>🔐 Admin login</h2>
+  <p class="note">Shop owner only. Customers never see this page.</p>
+  <input id="pw" type="password" placeholder="Admin password" autocomplete="current-password">
+  <button class="btn block" id="loginBtn">Login</button>
+  <div class="note" id="loginErr" style="color:var(--red)"></div>
+</div>
+
+<div id="app" class="wrap hide">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+    <h2>Shree Sachin · Admin</h2>
+    <div style="display:flex;gap:8px"><a class="btn alt sm" href="index.html" target="_blank" style="text-decoration:none">View shop</a><button class="btn alt sm" id="logout">Logout</button></div>
+  </div>
+
+  <div class="pub" id="pub"></div>
+
+  <div class="tabs" id="tabs">
+    <button data-t="flow" class="on">📋 Order flow</button>
+    <button data-t="prod">📦 Products</button>
+    <button data-t="offer">🏷️ Offers & discounts</button>
+    <button data-t="set">⚙️ Settings</button>
+  </div>
+
+  <section id="t-flow"></section>
+  <section id="t-prod" class="hide"></section>
+  <section id="t-offer" class="hide"></section>
+  <section id="t-set" class="hide"></section>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+/* Shree Sachin Mobile Center - shared data layer */
+const CATS = [
+  { id: 'Phones', icon: '📱' },
+  { id: 'Earbuds', icon: '🎧' },
+  { id: 'Chargers', icon: '🔌' },
+  { id: 'Cover', icon: '🛡️' },
+  { id: 'Repair', icon: '🛠️' },
+  { id: 'Smartwatches', icon: '⌚' }
+];
+
+function ph(label, cat) {
+  const icon = (CATS.find(c => c.id === cat) || {}).icon || '📱';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f1ff"/><stop offset="1" stop-color="#b9d4ff"/></linearGradient></defs><rect width="600" height="600" fill="url(#g)"/><text x="300" y="320" font-size="220" text-anchor="middle">${icon}</text><text x="300" y="480" font-size="34" text-anchor="middle" fill="#0b2a5b" font-family="Arial" font-weight="bold">${String(label).replace(/[<&]/g, '').slice(0, 26)}</text><text x="300" y="530" font-size="22" text-anchor="middle" fill="#456" font-family="Arial">Add real photo in Admin</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+const DEFAULT_DATA = {
+  updated: 1,
+  settings: {
+    shopName: 'Shree Sachin Mobile Center',
+    tagline: 'Your Trusted Mobile Shop',
+    whatsapp: '9779802417650',
+    phone: '+9779800000000',
+    address: 'Your shop address here',
+    currency: 'NRS',
+    adminHash: '',
+    msgIntro: 'Hello Shree Sachin Mobile Center 👋'
+  },
+  offers: [
+    { id: 'o1', type: 'hero', badge: 'NEW ARRIVAL', title: 'NEW PHONE?', text: 'GET THE BEST DEALS', percent: 20, active: true },
+    { id: 'o2', type: 'hero', badge: 'FESTIVAL OFFER', title: 'DASHAIN / TIHAR SALE', text: 'Negotiate on WhatsApp for the best price', percent: 15, active: true },
+    { id: 'o3', type: 'free', badge: '', title: 'FREE ACCESSORIES', text: 'Get free Cover + tempered glass with selected phones', percent: 0, active: true }
+  ],
+  products: [
+    { id: 'p1', name: 'iPhone 17 Pro Max', cat: 'Phones', storage: '256GB', price: 269999, discount: 10, stock: 5, rating: 4.8, negotiable: true, featured: true, freeGift: true, desc: 'Brand new sealed, 1 year warranty.', images: [] },
+    { id: 'p2', name: 'Samsung S26 Ultra', cat: 'Phones', storage: '256GB', price: 224999, discount: 10, stock: 4, rating: 4.8, negotiable: true, featured: true, freeGift: true, desc: 'Brand new sealed, official warranty.', images: [] },
+    { id: 'p3', name: 'Wireless Earbuds Pro', cat: 'Earbuds', storage: '', price: 3999, discount: 15, stock: 20, rating: 4.5, negotiable: true, featured: false, freeGift: false, desc: 'Noise cancelling, 24h battery.', images: [] },
+    { id: 'p4', name: '33W Fast Charger', cat: 'Chargers', storage: '', price: 1499, discount: 0, stock: 30, rating: 4.6, negotiable: true, featured: false, freeGift: false, desc: 'Fast charger with Type-C cable.', images: [] },
+    { id: 'p5', name: 'Clear Shockproof Cover', cat: 'Cover', storage: '', price: 799, discount: 0, stock: 50, rating: 4.4, negotiable: true, featured: false, freeGift: false, desc: 'Fits most popular models. Tell us your model on WhatsApp.', images: [] },
+    { id: 'p6', name: 'Smart Watch Active', cat: 'Smartwatches', storage: '', price: 5999, discount: 20, stock: 12, rating: 4.3, negotiable: true, featured: false, freeGift: false, desc: 'AMOLED display, heart-rate, calls.', images: [] }
+  ]
+};
+
+const Store = {
+  async load() {
+    let remote = null;
+    try {
+      const r = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
+      if (r.ok) remote = await r.json();
+    } catch (e) {}
+    let local = null;
+    try { local = JSON.parse(localStorage.getItem('ssmc_data') || 'null'); } catch (e) {}
+    let d = remote || DEFAULT_DATA;
+    // admin's unpublished edits win only on admin's own browser while they are newer
+    if (local && (!remote || (local.updated || 0) > (remote.updated || 0))) d = local;
+    d.settings = Object.assign({}, DEFAULT_DATA.settings, d.settings || {});
+    d.offers = d.offers || [];
+    d.products = d.products || [];
+    return d;
+  },
+  save(d) {
+    d.updated = Date.now();
+    localStorage.setItem('ssmc_data', JSON.stringify(d));
+  }
+};
+
+const fmt = (n, cur) => (cur || 'NRS') + ' ' + Math.round(n).toLocaleString('en-US');
+const finalPrice = p => Math.round(p.price * (1 - (Number(p.discount) || 0) / 100));
+const imgOf = (p, i = 0) => (p.images && p.images[i]) || ph(p.name, p.cat);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const waLink = (num, text) => 'https://wa.me/' + String(num).replace(/\D/g, '') + '?text=' + encodeURIComponent(text);
+const siteUrl = () => location.href.split('#')[0].split('?')[0].replace(/admin\.html$/, '').replace(/index\.html$/, '');
+async function sha256(t) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+</script>
+<script>
+(async function () {
+  const D = await Store.load();
+  const $ = id => document.getElementById(id);
+  const DEFAULT_PW = 'sachin@123';
+  let dirty = false, editing = null, imgs = [], tab = 'flow';
+  const toast = t => { const e = $('toast'); e.textContent = t; e.classList.add('on'); setTimeout(() => e.classList.remove('on'), 2000); };
+  const persist = () => { Store.save(D); dirty = true; pub(); };
+
+  // ---------- login (client-side only: see note in the README / chat) ----------
+  async function tryLogin() {
+    const pw = $('pw').value;
+    const ok = D.settings.adminHash ? (await sha256(pw)) === D.settings.adminHash : pw === DEFAULT_PW;
+    if (!ok) { $('loginErr').textContent = 'Wrong password'; return; }
+    sessionStorage.setItem('ssmc_admin', '1'); start();
+  }
+  $('loginBtn').onclick = tryLogin;
+  $('pw').onkeydown = e => { if (e.key === 'Enter') tryLogin(); };
+  $('logout').onclick = () => { sessionStorage.removeItem('ssmc_admin'); location.reload(); };
+  if (sessionStorage.getItem('ssmc_admin')) start();
+
+  function start() {
+    $('loginBox').classList.add('hide'); $('app').classList.remove('hide');
+    $('tabs').querySelectorAll('button').forEach(b => b.onclick = () => showTab(b.dataset.t));
+    pub(); renderAll();
+  }
+  function showTab(t) {
+    tab = t;
+    $('tabs').querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+    ['flow', 'prod', 'offer', 'set'].forEach(x => $('t-' + x).classList.toggle('hide', x !== t));
+  }
+  function renderAll() { rFlow(); rProd(); rOffer(); rSet(); }
+
+  // ---------- publish bar ----------
+  function pub() {
+    const el = $('pub');
+    el.className = 'pub' + (dirty ? '' : ' ok');
+    el.innerHTML = dirty
+      ? '⚠️ <b>Changes are saved only in this browser.</b> To show them to customers: <button class="btn sm" id="dl">⬇ Download data.json</button> then upload it to GitHub (replace the old data.json).'
+      : '✅ Everything here matches what is saved. Edit anything — then download data.json to publish.';
+    if ($('dl')) $('dl').onclick = download;
+  }
+  function download() {
+    const blob = new Blob([JSON.stringify(D, null, 1)], { type: 'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'data.json'; a.click();
+    dirty = false; pub(); toast('data.json downloaded — upload it to GitHub');
+  }
+
+  // ---------- order flow ----------
+  function rFlow() {
+    const P = D.products, S = D.settings;
+    const prodOpts = P.map(p => `<option value="${p.id}">${esc(p.name)} ${esc(p.storage)} — ${fmt(finalPrice(p), S.currency)}</option>`).join('');
+    $('t-flow').innerHTML = `
+    <div class="panel"><h3>Overview</h3><div class="stats">
+      <div class="stat"><b>${P.length}</b>Products</div>
+      <div class="stat"><b>${P.filter(p => p.discount > 0).length}</b>On discount</div>
+      <div class="stat"><b>${P.filter(p => p.stock <= 0).length}</b>Out of stock</div>
+      <div class="stat"><b>${D.offers.filter(o => o.active).length}</b>Active offers</div></div></div>
+    <div class="panel"><h3>How orders & negotiation work</h3><div class="flow">
+      <div class="step"><i>1</i><div><b>You add products</b> — name, price, photos, discount, stock (Products tab).</div></div>
+      <div class="step"><i>2</i><div><b>Customer browses</b> — sees photos, discounted prices, offers and free gifts. No login needed.</div></div>
+      <div class="step"><i>3</i><div><b>Customer selects items</b> — adds to cart, may type their own offer price and a note.</div></div>
+      <div class="step"><i>4</i><div><b>"Order" or "Negotiate" on WhatsApp</b> — your WhatsApp opens with items, prices, quantity and a link to each item's photo.</div></div>
+      <div class="step"><i>5</i><div><b>You reply & agree the final price</b> in chat (use the quote builder below), confirm stock and payment.</div></div>
+      <div class="step"><i>6</i><div><b>Payment & delivery / pickup</b> — arranged in the same chat.</div></div></div>
+      <p class="note" style="margin-top:8px">Orders arrive in your WhatsApp (${esc(S.whatsapp)}). This site does not store customer orders — WhatsApp is your order book.</p></div>
+    <div class="panel"><h3>Quote builder (send the agreed price to a customer)</h3>
+      <div class="f3"><div><label>Product</label><select id="qP">${prodOpts}</select></div>
+      <div><label>Agreed price (${esc(S.currency)})</label><input id="qPrice" inputmode="numeric"></div>
+      <div><label>Customer WhatsApp no.</label><input id="qNo" inputmode="tel" placeholder="97798…"></div></div>
+      <button class="btn wa" style="margin-top:10px" id="qGo">💬 Send quote on WhatsApp</button></div>`;
+    if (P.length) { const sel = () => { const p = P.find(x => x.id === $('qP').value); if (p) $('qPrice').value = finalPrice(p); }; $('qP').onchange = sel; sel(); }
+    $('qGo').onclick = () => {
+      const p = P.find(x => x.id === $('qP').value), pr = $('qPrice').value.replace(/\D/g, ''), no = $('qNo').value.replace(/\D/g, '');
+      if (!p || !pr || !no) return toast('Choose product, price and customer number');
+      const m = `Hello! This is ${S.shopName}.\nFinal price for ${p.name} ${p.storage}: ${fmt(pr, S.currency)}${p.freeGift ? '\n🎁 Free cover + tempered glass included' : ''}\nSee item: ${siteUrl()}?p=${p.id}\nShall I confirm your order?`;
+      window.open(waLink(no, m), '_blank');
+    };
+  }
+
+  // ---------- products ----------
+  function rProd() {
+    const S = D.settings, p = editing ? D.products.find(x => x.id === editing) : null;
+    const v = (k, d = '') => p ? (p[k] == null ? d : p[k]) : d;
+    $('t-prod').innerHTML = `
+    <div class="panel"><h3>${p ? 'Edit product' : 'Add new product'}</h3>
+      <div class="f2"><div><label>Product name *</label><input id="fName" value="${esc(v('name'))}" placeholder="iPhone 17 Pro Max"></div>
+      <div><label>Category *</label><select id="fCat">${CATS.map(c => `<option ${v('cat', 'Phones') === c.id ? 'selected' : ''}>${c.id}</option>`).join('')}</select></div></div>
+      <div class="f3" style="margin-top:10px"><div><label>Price (${esc(S.currency)}) *</label><input id="fPrice" inputmode="numeric" value="${v('price')}"></div>
+      <div><label>Discount %</label><input id="fDisc" inputmode="numeric" value="${v('discount', 0)}"></div>
+      <div><label>Price customer sees</label><input id="fFinal" disabled></div></div>
+      <div class="f3" style="margin-top:10px"><div><label>Storage / variant</label><input id="fStore" value="${esc(v('storage'))}" placeholder="256GB"></div>
+      <div><label>Stock (0 = sold out)</label><input id="fStock" inputmode="numeric" value="${v('stock', 1)}"></div>
+      <div><label>Rating (1–5)</label><input id="fRate" value="${v('rating', 4.5)}"></div></div>
+      <div style="margin-top:10px"><label>Description</label><textarea id="fDesc" placeholder="Warranty, condition, colours…">${esc(v('desc'))}</textarea></div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin:10px 0">
+        <label><input type="checkbox" id="fNeg" style="width:auto" ${v('negotiable', true) ? 'checked' : ''}> Allow negotiation button</label>
+        <label><input type="checkbox" id="fGift" style="width:auto" ${v('freeGift', false) ? 'checked' : ''}> Free cover + glass offer</label></div>
+      <label>Photos (real photos — first one is the main photo, max 5)</label>
+      <input type="file" id="fFile" accept="image/*" multiple>
+      <div style="display:flex;gap:8px;margin-top:8px"><input id="fUrl" placeholder="or paste an image link (https://…)"><button class="btn alt sm" id="fUrlAdd">Add link</button></div>
+      <div class="thumbs" id="thumbs"></div>
+      <div style="display:flex;gap:8px;margin-top:14px"><button class="btn" id="fSave">${p ? 'Save changes' : '＋ Add product'}</button>${p ? '<button class="btn alt" id="fCancel">Cancel</button>' : ''}</div></div>
+    <div class="panel"><h3>All products (${D.products.length})</h3>
+      <input id="pSearch" placeholder="Search products…" style="margin-bottom:6px"><div id="pList"></div></div>`;
+    imgs = p ? (p.images || []).slice() : (imgs.length && !editing ? imgs : []);
+    const upd = () => { const pr = Number($('fPrice').value.replace(/\D/g, '')) || 0, d = Math.min(100, Number($('fDisc').value) || 0); $('fFinal').value = fmt(pr * (1 - d / 100), S.currency); };
+    $('fPrice').oninput = $('fDisc').oninput = upd; upd();
+    thumbs();
+    $('fFile').onchange = async e => {
+      for (const f of Array.from(e.target.files)) { if (imgs.length >= 5) break; imgs.push(await shrink(f)); }
+      e.target.value = ''; thumbs();
+    };
+    $('fUrlAdd').onclick = () => { const u = $('fUrl').value.trim(); if (/^https?:\/\//.test(u) && imgs.length < 5) { imgs.push(u); $('fUrl').value = ''; thumbs(); } else toast('Paste a valid https link'); };
+    $('fSave').onclick = saveProduct;
+    if ($('fCancel')) $('fCancel').onclick = () => { editing = null; imgs = []; rProd(); };
+    $('pSearch').oninput = list; list();
+  }
+  function thumbs() {
+    $('thumbs').innerHTML = imgs.map((s, i) => `<div><img src="${s}" alt=""><button data-i="${i}">✕</button></div>`).join('');
+    $('thumbs').querySelectorAll('button').forEach(b => b.onclick = () => { imgs.splice(Number(b.dataset.i), 1); thumbs(); });
+  }
+  function shrink(file) {
+    return new Promise(res => {
+      const r = new FileReader();
+      r.onload = () => { const im = new Image(); im.onload = () => {
+        const m = 700, k = Math.min(1, m / Math.max(im.width, im.height)), c = document.createElement('canvas');
+        c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+        c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); res(c.toDataURL('image/jpeg', 0.78)); };
+        im.src = r.result; };
+      r.readAsDataURL(file);
+    });
+  }
+  function saveProduct() {
+    const name = $('fName').value.trim(), price = Number($('fPrice').value.replace(/\D/g, ''));
+    if (!name || !price) return toast('Name and price are required');
+    const o = { name, cat: $('fCat').value, price, discount: Math.min(100, Number($('fDisc').value) || 0), storage: $('fStore').value.trim(),
+      stock: Number($('fStock').value) || 0, rating: Number($('fRate').value) || 4.5, desc: $('fDesc').value.trim(),
+      negotiable: $('fNeg').checked, freeGift: $('fGift').checked, images: imgs.slice() };
+    if (editing) Object.assign(D.products.find(x => x.id === editing), o);
+    else D.products.unshift(Object.assign({ id: 'p' + Date.now().toString(36), featured: o.cat === 'Phones' }, o));
+    toast(editing ? 'Product updated ✓' : 'Product added ✓'); editing = null; imgs = [];
+    persist(); renderAll();
+  }
+  function list() {
+    const s = ($('pSearch').value || '').toLowerCase();
+    const L = D.products.filter(p => (p.name + p.cat).toLowerCase().includes(s));
+    $('pList').innerHTML = L.length ? L.map(p => `<div class="pl"><img src="${imgOf(p)}" alt="">
+      <div class="t"><b>${esc(p.name)} ${esc(p.storage)}</b><br>${p.discount > 0 ? `<s>${fmt(p.price, D.settings.currency)}</s> ` : ''}<b style="color:var(--blue)">${fmt(finalPrice(p), D.settings.currency)}</b>
+      ${p.discount > 0 ? ` · ${p.discount}% off` : ''}<br><small>${esc(p.cat)} · stock ${p.stock}</small></div>
+      <button class="btn alt sm" data-e="${p.id}">Edit</button><button class="btn red sm" data-d="${p.id}">Delete</button></div>`).join('') : '<div class="empty">No products yet.</div>';
+    $('pList').querySelectorAll('[data-e]').forEach(b => b.onclick = () => { editing = b.dataset.e; rProd(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    $('pList').querySelectorAll('[data-d]').forEach(b => b.onclick = () => { if (confirm('Delete this product?')) { D.products = D.products.filter(x => x.id !== b.dataset.d); persist(); renderAll(); } });
+  }
+
+  // ---------- offers ----------
+  function rOffer() {
+    $('t-offer').innerHTML = `
+    <div class="panel"><h3>Banners & offers</h3>
+      <p class="note" style="margin-bottom:8px">"Hero" offers rotate on top of the shop. The "Free accessories" banner shows real accessory photos. Per-product discounts are set in the Products tab.</p>
+      ${D.offers.map(o => `<div class="panel" style="background:#f7faff" data-o="${o.id}">
+        <div class="f2"><div><label>Type</label><select data-k="type"><option value="hero" ${o.type === 'hero' ? 'selected' : ''}>Hero banner (top)</option><option value="free" ${o.type === 'free' ? 'selected' : ''}>Free accessories banner</option></select></div>
+        <div><label>Badge text</label><input data-k="badge" value="${esc(o.badge)}"></div></div>
+        <div class="f2" style="margin-top:8px"><div><label>Title</label><input data-k="title" value="${esc(o.title)}"></div>
+        <div><label>"Up to __% off" (0 = hide)</label><input data-k="percent" inputmode="numeric" value="${o.percent}"></div></div>
+        <label style="margin-top:8px">Text</label><input data-k="text" value="${esc(o.text)}">
+        <div style="display:flex;justify-content:space-between;margin-top:8px;align-items:center"><label style="margin:0"><input type="checkbox" data-k="active" style="width:auto" ${o.active ? 'checked' : ''}> Show on website</label>
+        <button class="btn red sm" data-del="${o.id}">Delete</button></div></div>`).join('')}
+      <button class="btn" id="oAdd">＋ Add offer</button></div>
+    <div class="panel"><h3>Quick discount for a whole category</h3>
+      <div class="f3"><div><label>Category</label><select id="bCat">${CATS.map(c => `<option>${c.id}</option>`).join('')}</select></div>
+      <div><label>Discount %</label><input id="bPct" inputmode="numeric" placeholder="10"></div><div><label>&nbsp;</label><button class="btn block" id="bGo">Apply</button></div></div></div>`;
+    $('t-offer').querySelectorAll('[data-o]').forEach(box => box.querySelectorAll('[data-k]').forEach(inp => inp.onchange = () => {
+      const o = D.offers.find(x => x.id === box.dataset.o), k = inp.dataset.k;
+      o[k] = k === 'active' ? inp.checked : k === 'percent' ? Number(inp.value) || 0 : inp.value; persist();
+    }));
+    $('t-offer').querySelectorAll('[data-del]').forEach(b => b.onclick = () => { D.offers = D.offers.filter(x => x.id !== b.dataset.del); persist(); rOffer(); });
+    $('oAdd').onclick = () => { D.offers.push({ id: 'o' + Date.now().toString(36), type: 'hero', badge: 'SPECIAL OFFER', title: 'New offer', text: 'Describe your offer', percent: 10, active: true }); persist(); rOffer(); };
+    $('bGo').onclick = () => { const n = Math.min(100, Number($('bPct').value) || 0); D.products.filter(p => p.cat === $('bCat').value).forEach(p => p.discount = n); persist(); renderAll(); toast('Discount applied'); };
+  }
+
+  // ---------- settings ----------
+  function rSet() {
+    const S = D.settings;
+    $('t-set').innerHTML = `<div class="panel"><h3>Shop & contact</h3>
+      <div class="f2"><div><label>Shop name</label><input data-s="shopName" value="${esc(S.shopName)}"></div><div><label>Tagline</label><input data-s="tagline" value="${esc(S.tagline)}"></div>
+      <div><label>WhatsApp number (country code, digits only) *</label><input data-s="whatsapp" value="${esc(S.whatsapp)}" placeholder="97798XXXXXXXX"></div>
+      <div><label>Phone for the Call button</label><input data-s="phone" value="${esc(S.phone)}" placeholder="+97798XXXXXXXX"></div>
+      <div><label>Address</label><input data-s="address" value="${esc(S.address)}"></div><div><label>Currency label</label><input data-s="currency" value="${esc(S.currency)}"></div></div>
+      <label style="margin-top:8px">First line of every WhatsApp message</label><input data-s="msgIntro" value="${esc(S.msgIntro)}"></div>
+    <div class="panel"><h3>Change admin password</h3><div style="display:flex;gap:8px"><input id="npw" type="password" placeholder="New password (min 6 characters)"><button class="btn" id="npwGo">Change</button></div>
+      <p class="note" style="margin-top:8px">The default password is <b>${DEFAULT_PW}</b> — change it now, then download and upload data.json.</p></div>`;
+    $('t-set').querySelectorAll('[data-s]').forEach(i => i.onchange = () => { D.settings[i.dataset.s] = i.value.trim(); persist(); });
+    $('npwGo').onclick = async () => { const n = $('npw').value; if (n.length < 6) return toast('Use at least 6 characters'); D.settings.adminHash = await sha256(n); persist(); $('npw').value = ''; toast('Password changed — now download data.json'); };
+  }
+})();
+
+</script>
+</body>
+</html>

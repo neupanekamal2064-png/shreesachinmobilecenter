@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shree Sachin Mobile Center</title>
+<meta name="description" content="Phones, earbuds, chargers, covers, smartwatches and repair. Order or negotiate on WhatsApp.">
+<style>
+:root{--blue:#0a7cff;--navy:#0a1f44;--bg:#f4f7fc;--line:#d9e2f0;--ink:#111827;--mut:#6b7280;--ok:#16a34a;--red:#e11d48}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:84px}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input,select,textarea{font:inherit;width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+textarea{resize:vertical;min-height:70px}
+img{max-width:100%;display:block}
+.wrap{max-width:980px;margin:0 auto;padding:0 14px}
+/* top bar */
+.top{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:10px;height:62px}
+.brand{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.brand svg,.brand img{width:40px;height:40px;flex:none}
+.brand b{display:block;font-weight:900;color:var(--navy);font-size:15px;line-height:1.1}
+.brand small{display:block;color:var(--blue);font-weight:700;font-size:10px;letter-spacing:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:10px 16px;border-radius:10px;background:var(--blue);color:#fff;font-weight:600}
+.btn.alt{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+.btn.wa{background:#25d366}
+.btn.red{background:var(--red)}
+.btn.sm{padding:6px 10px;font-size:13px;border-radius:8px}
+.btn.block{width:100%}
+.contact{position:relative}
+.menu{position:absolute;right:0;top:46px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px #0002;min-width:210px;display:none;overflow:hidden}
+.menu.open{display:block}
+.menu a{display:block;padding:12px 14px;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--line);font-size:14px}
+.menu a:last-child{border:0}
+.menu a:hover{background:#eef5ff}
+.ibtn{position:relative;font-size:22px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center}
+.cnt{position:absolute;top:0;right:0;background:var(--red);color:#fff;font-size:11px;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 4px}
+/* search */
+.search{margin:14px 0;display:flex;align-items:center;gap:8px;border:1.5px solid var(--navy);border-radius:22px;padding:2px 14px;background:#fff}
+.search input{border:0;padding:10px 0;outline:0}
+.hello{margin-top:12px;font-size:13px;color:#444}
+.hello b{display:block;font-size:20px;color:var(--ink)}
+/* hero */
+.hero{position:relative;border-radius:16px;overflow:hidden;min-height:170px;background:linear-gradient(120deg,#0a3a8a,#6aa3ff);color:#fff}
+.slide{display:none;padding:20px;min-height:170px;position:relative}
+.slide.on{display:block}
+.slide .tag{display:inline-block;background:#fff;color:var(--navy);font-weight:800;font-size:11px;padding:3px 10px;border-radius:12px}
+.slide h2{font-size:24px;margin:8px 0 2px;font-weight:900}
+.slide p{font-weight:700;font-size:14px;max-width:62%}
+.slide .pct{font-size:14px;margin-top:4px;font-weight:700}
+.slide .pct b{font-size:34px;color:#ffe14d}
+.slide .btn{margin-top:8px;background:#fff;color:var(--ink)}
+.slide .pics{position:absolute;right:10px;bottom:6px;display:flex;gap:4px;align-items:flex-end}
+.slide .pics img{width:64px;height:86px;object-fit:cover;border-radius:10px;border:2px solid #fff;background:#fff}
+.dots{position:absolute;bottom:8px;left:50%;display:flex;gap:6px;transform:translateX(-50%)}
+.dots i{width:8px;height:8px;border-radius:50%;background:#fff6}
+.dots i.on{background:#fff}
+/* categories */
+.cats{display:flex;gap:10px;overflow:auto;padding:14px 0 6px;scrollbar-width:none}
+.cat{flex:none;width:68px;text-align:center;font-size:11px}
+.cat span{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 4px;border:1.5px solid var(--navy);border-radius:12px;font-size:24px;background:#fff}
+.cat.on span{background:var(--blue);border-color:var(--blue)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px}
+.sec h3{font-size:16px}
+.sec a{color:var(--blue);font-size:13px;cursor:pointer;text-decoration:none}
+/* products */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:#fff;border:1.5px solid var(--navy);border-radius:18px;padding:10px;position:relative;display:flex;flex-direction:column}
+.card .im{aspect-ratio:1;border-radius:12px;overflow:hidden;background:#eef3fb;cursor:pointer}
+.card .im img{width:100%;height:100%;object-fit:cover}
+.card h4{font-size:13.5px;margin-top:8px;text-align:center;font-weight:600;cursor:pointer}
+.card .meta{display:flex;justify-content:center;gap:8px;font-size:11px;color:var(--mut)}
+.price{text-align:center;color:var(--blue);font-weight:800;font-size:14px;margin:2px 0 6px}
+.price s{display:block;color:var(--mut);font-weight:400;font-size:11px}
+.off{position:absolute;top:8px;left:8px;background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:10px;z-index:2}
+.heart{position:absolute;top:6px;right:8px;font-size:19px;z-index:2;background:#fffc;border-radius:50%;width:28px;height:28px;display:grid;place-items:center}
+.card .row{display:flex;gap:6px;margin-top:auto}
+.card .row .btn{flex:1;padding:7px 4px;font-size:12px;border-radius:8px}
+.gift{font-size:10.5px;text-align:center;color:var(--ok);font-weight:700;margin-bottom:4px}
+.oos{opacity:.55}
+/* free accessories */
+.free{background:#c9d1ff;border-radius:16px;padding:16px;display:flex;gap:12px;align-items:center}
+.free .pics{display:flex;gap:6px;flex:1;overflow:auto}
+.free .pics img{width:78px;height:78px;object-fit:cover;border-radius:12px;border:2px solid #fff;background:#fff;flex:none}
+.free h3{font-size:18px;font-weight:900}
+.free p{font-size:12px;font-weight:600;margin:4px 0 8px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.trust div{border:1.5px solid var(--navy);border-radius:8px;padding:8px 4px;font-size:11px;text-align:center;font-weight:600;background:#fff}
+/* bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);z-index:30}
+.nav .wrap{display:flex;justify-content:space-around;align-items:flex-end;height:64px}
+.nav button{font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 10px;position:relative}
+.nav button i{font-style:normal;font-size:22px}
+.nav .plus{width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;font-size:30px;margin-top:-22px;border:5px solid #dcecff;display:grid;place-items:center;padding:0}
+/* drawer & modal */
+.ov{position:fixed;inset:0;background:#0007;z-index:50;display:none}
+.ov.open{display:block}
+.drawer{position:absolute;right:0;top:0;bottom:0;width:min(440px,100%);background:#fff;display:flex;flex-direction:column}
+.drawer header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:17px}
+.drawer .body{flex:1;overflow:auto;padding:12px 16px}
+.drawer footer{padding:12px 16px;border-top:1px solid var(--line);display:grid;gap:8px}
+.ci{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.ci img{width:62px;height:62px;border-radius:10px;object-fit:cover;flex:none}
+.ci .t{flex:1;min-width:0;font-size:13px}
+.ci .t b{display:block}
+.qty{display:flex;align-items:center;gap:6px;margin-top:4px}
+.qty button{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);font-weight:700}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,94%);max-height:92vh;overflow:auto;background:#fff;border-radius:18px;padding:16px}
+.gal{display:flex;gap:6px;overflow:auto;margin:8px 0}
+.gal img{width:70px;height:70px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+.main-im{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;background:#eef3fb}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:16px}
+.note{font-size:12px;color:var(--mut)}
+.empty{text-align:center;color:var(--mut);padding:30px 0}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:20px;font-size:13px;z-index:99;opacity:0;transition:.25s;pointer-events:none}
+.toast.on{opacity:1}
+.foot{text-align:center;color:var(--mut);font-size:12px;padding:20px 0}
+.foot1{text-align:center;padding:6px 0 24px}
+.foot1 a{color:#9aa5b8;font-size:12px;text-decoration:none;padding:8px 14px;border-radius:14px;display:inline-block}
+.foot1 a:hover{color:var(--blue);background:#eef5ff}
+.fab-wa{position:fixed;right:14px;bottom:84px;width:54px;height:54px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:28px;z-index:29;box-shadow:0 6px 18px #0003;text-decoration:none}
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <!-- To use your real logo: put logo.png in this folder and replace the <svg> with <img src="logo.png" alt="logo"> -->
+      <svg viewBox="0 0 40 40"><rect x="8" y="3" width="17" height="30" rx="4" fill="#0a7cff"/><rect x="21" y="14" width="14" height="19" rx="2" fill="#0a1f44"/><ellipse cx="20" cy="30" rx="18" ry="5" fill="none" stroke="#0a7cff" stroke-width="2.5"/></svg>
+      <div><b id="shopName">SHREE SACHIN</b><small>MOBILE CENTER</small></div>
+    </div>
+    <div class="contact">
+      <button class="btn" id="contactBtn">📞 Contact</button>
+      <div class="menu" id="contactMenu">
+        <a id="cCall" href="#">📞 Call the shop</a>
+        <a id="cWa" href="#" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+        <a id="cMap" href="#" target="_blank" rel="noopener">📍 <span id="cAddr">Shop location</span></a>
+      </div>
+    </div>
+    <button class="ibtn" id="cartTop" aria-label="Cart">🛒<span class="cnt" id="cnt1">0</span></button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hello">Welcome<b id="welcome">Shree Sachin Mobile Center</b></div>
+  <label class="search">🔍<input id="q" placeholder="Search phones, accessories & more..."></label>
+
+  <div class="hero" id="hero"></div>
+
+  <div class="cats" id="cats"></div>
+
+  <div id="results"></div>
+
+  <div id="freeBanner"></div>
+
+  <div class="trust"><div>🛡️ 100% Genuine Products</div><div>✅ Trusted Service</div><div>🎧 After Sales Support</div></div>
+  
+  <div class="foot" id="foot"></div>
+  <div class="foot1"><a href="admin.html" rel="nofollow">🔐 Admin login</a></div>
+   
+</main>
+
+<a class="fab-wa" id="fabWa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<nav class="nav">
+  <div class="wrap">
+    <button id="nHome"><i>🏠</i>Home</button>
+    <button id="nWish"><i>🤍</i>Wishlist</button>
+    <button class="plus" id="nPlus" aria-label="Open cart">+</button>
+    <button id="nCart"><i>🛒</i>Cart<span class="cnt" id="cnt2">0</span></button>
+    <button id="nContact"><i>📞</i>Contact</button>
+  </div>
+</nav>
+
+<!-- Cart / checkout -->
+<div class="ov" id="cartOv">
+  <div class="drawer">
+    <header>Your Cart <button id="cartClose">✕</button></header>
+    <div class="body" id="cartBody"></div>
+    <footer id="cartFoot"></footer>
+  </div>
+</div>
+
+<!-- Product details -->
+<div class="ov" id="prodOv"><div class="modal" id="prodBox"></div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* Shree Sachin Mobile Center - shared data layer */
+const CATS = [
+  { id: 'Phones', icon: '📱' },
+  { id: 'Earbuds', icon: '🎧' },
+  { id: 'Chargers', icon: '🔌' },
+  { id: 'Cover', icon: '🛡️' },
+  { id: 'Repair', icon: '🛠️' },
+  { id: 'Smartwatches', icon: '⌚' }
+];
+
+function ph(label, cat) {
+  const icon = (CATS.find(c => c.id === cat) || {}).icon || '📱';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8f1ff"/><stop offset="1" stop-color="#b9d4ff"/></linearGradient></defs><rect width="600" height="600" fill="url(#g)"/><text x="300" y="320" font-size="220" text-anchor="middle">${icon}</text><text x="300" y="480" font-size="34" text-anchor="middle" fill="#0b2a5b" font-family="Arial" font-weight="bold">${String(label).replace(/[<&]/g, '').slice(0, 26)}</text><text x="300" y="530" font-size="22" text-anchor="middle" fill="#456" font-family="Arial">Add real photo in Admin</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+const DEFAULT_DATA = {
+  updated: 1,
+  settings: {
+    shopName: 'Shree Sachin Mobile Center',
+    tagline: 'Your Trusted Mobile Shop',
+    whatsapp: '9779802417650',
+    phone: '+9779800000000',
+    address: 'Your shop address here',
+    currency: 'NRS',
+    adminHash: '',
+    msgIntro: 'Hello Shree Sachin Mobile Center 👋'
+  },
+  offers: [
+    { id: 'o1', type: 'hero', badge: 'NEW ARRIVAL', title: 'NEW PHONE?', text: 'GET THE BEST DEALS', percent: 20, active: true },
+    { id: 'o2', type: 'hero', badge: 'FESTIVAL OFFER', title: 'DASHAIN / TIHAR SALE', text: 'Negotiate on WhatsApp for the best price', percent: 15, active: true },
+    { id: 'o3', type: 'free', badge: '', title: 'FREE ACCESSORIES', text: 'Get free Cover + tempered glass with selected phones', percent: 0, active: true }
+  ],
+  products: [
+    { id: 'p1', name: 'iPhone 17 Pro Max', cat: 'Phones', storage: '256GB', price: 269999, discount: 10, stock: 5, rating: 4.8, negotiable: true, featured: true, freeGift: true, desc: 'Brand new sealed, 1 year warranty.', images: [] },
+    { id: 'p2', name: 'Samsung S26 Ultra', cat: 'Phones', storage: '256GB', price: 224999, discount: 10, stock: 4, rating: 4.8, negotiable: true, featured: true, freeGift: true, desc: 'Brand new sealed, official warranty.', images: [] },
+    { id: 'p3', name: 'Wireless Earbuds Pro', cat: 'Earbuds', storage: '', price: 3999, discount: 15, stock: 20, rating: 4.5, negotiable: true, featured: false, freeGift: false, desc: 'Noise cancelling, 24h battery.', images: [] },
+    { id: 'p4', name: '33W Fast Charger', cat: 'Chargers', storage: '', price: 1499, discount: 0, stock: 30, rating: 4.6, negotiable: true, featured: false, freeGift: false, desc: 'Fast charger with Type-C cable.', images: [] },
+    { id: 'p5', name: 'Clear Shockproof Cover', cat: 'Cover', storage: '', price: 799, discount: 0, stock: 50, rating: 4.4, negotiable: true, featured: false, freeGift: false, desc: 'Fits most popular models. Tell us your model on WhatsApp.', images: [] },
+    { id: 'p6', name: 'Smart Watch Active', cat: 'Smartwatches', storage: '', price: 5999, discount: 20, stock: 12, rating: 4.3, negotiable: true, featured: false, freeGift: false, desc: 'AMOLED display, heart-rate, calls.', images: [] }
+  ]
+};
+
+const Store = {
+  async load() {
+    let remote = null;
+    try {
+      const r = await fetch('data.json?v=' + Date.now(), { cache: 'no-store' });
+      if (r.ok) remote = await r.json();
+    } catch (e) {}
+    let local = null;
+    try { local = JSON.parse(localStorage.getItem('ssmc_data') || 'null'); } catch (e) {}
+    let d = remote || DEFAULT_DATA;
+    // admin's unpublished edits win only on admin's own browser while they are newer
+    if (local && (!remote || (local.updated || 0) > (remote.updated || 0))) d = local;
+    d.settings = Object.assign({}, DEFAULT_DATA.settings, d.settings || {});
+    d.offers = d.offers || [];
+    d.products = d.products || [];
+    return d;
+  },
+  save(d) {
+    d.updated = Date.now();
+    localStorage.setItem('ssmc_data', JSON.stringify(d));
+  }
+};
+
+const fmt = (n, cur) => (cur || 'NRS') + ' ' + Math.round(n).toLocaleString('en-US');
+const finalPrice = p => Math.round(p.price * (1 - (Number(p.discount) || 0) / 100));
+const imgOf = (p, i = 0) => (p.images && p.images[i]) || ph(p.name, p.cat);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const waLink = (num, text) => 'https://wa.me/' + String(num).replace(/\D/g, '') + '?text=' + encodeURIComponent(text);
+const siteUrl = () => location.href.split('#')[0].split('?')[0].replace(/admin\.html$/, '').replace(/index\.html$/, '');
+async function sha256(t) {
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t));
+  return Array.from(new Uint8Array(b)).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+</script>
+<script>
+(async function () {
+  const D = await Store.load();
+  const S = D.settings, cur = S.currency;
+  const $ = id => document.getElementById(id);
+  let cat = '', q = '', wishOnly = false, slide = 0, timer;
+  let cart = {}, wish = [];
+  try { cart = JSON.parse(localStorage.getItem('ssmc_cart') || '{}'); wish = JSON.parse(localStorage.getItem('ssmc_wish') || '[]'); } catch (e) {}
+  const saveCart = () => { localStorage.setItem('ssmc_cart', JSON.stringify(cart)); cartBadge(); };
+  const saveWish = () => localStorage.setItem('ssmc_wish', JSON.stringify(wish));
+  const byId = id => D.products.find(p => p.id === id);
+  const toast = t => { const e = $('toast'); e.textContent = t; e.classList.add('on'); setTimeout(() => e.classList.remove('on'), 1800); };
+  const generalWa = () => waLink(S.whatsapp, S.msgIntro + '\nI want to ask about your phones and accessories.');
+
+  // ---------- header / contact ----------
+  document.title = S.shopName;
+  $('shopName').textContent = S.shopName.replace(/ Mobile Center/i, '').toUpperCase();
+  $('welcome').textContent = S.shopName;
+  $('cCall').href = 'tel:' + S.phone.replace(/\s/g, '');
+  $('cWa').href = generalWa();
+  $('fabWa').href = generalWa();
+  $('cAddr').textContent = S.address || 'Shop location';
+  $('cMap').href = 'https://www.google.com/maps/search/' + encodeURIComponent(S.address || S.shopName);
+  $('foot').innerHTML = '© ' + new Date().getFullYear() + ' ' + esc(S.shopName) + ' · ' + esc(S.tagline) + '<br>' + esc(S.address || '');
+  $('contactBtn').onclick = e => { e.stopPropagation(); $('contactMenu').classList.toggle('open'); };
+  $('nContact').onclick = e => { e.stopPropagation(); window.scrollTo({ top: 0, behavior: 'smooth' }); $('contactMenu').classList.add('open'); };
+  document.addEventListener('click', () => $('contactMenu').classList.remove('open'));
+
+  // ---------- hero ----------
+  function renderHero() {
+    const offers = D.offers.filter(o => o.type === 'hero' && o.active);
+    const pics = D.products.filter(p => p.cat === 'Phones').slice(0, 3).map(p => imgOf(p));
+    if (!offers.length) { $('hero').style.display = 'none'; return; }
+    $('hero').innerHTML = offers.map((o, i) => `<div class="slide ${i === 0 ? 'on' : ''}">
+      ${o.badge ? `<span class="tag">${esc(o.badge)}</span>` : ''}
+      <h2>${esc(o.title)}</h2><p>${esc(o.text)}</p>
+      ${o.percent > 0 ? `<div class="pct">UP TO <b>${o.percent}%</b> OFF</div>` : ''}
+      <button class="btn sm" data-shop>Shop Now →</button>
+      <div class="pics">${pics.map(s => `<img src="${s}" alt="">`).join('')}</div></div>`).join('') +
+      `<div class="dots">${offers.map((_, i) => `<i class="${i === 0 ? 'on' : ''}"></i>`).join('')}</div>`;
+    $('hero').querySelectorAll('[data-shop]').forEach(b => b.onclick = () => $('results').scrollIntoView({ behavior: 'smooth' }));
+    clearInterval(timer);
+    if (offers.length > 1) timer = setInterval(() => {
+      const s = $('hero').querySelectorAll('.slide'), d = $('hero').querySelectorAll('.dots i');
+      s[slide].classList.remove('on'); d[slide].classList.remove('on');
+      slide = (slide + 1) % s.length; s[slide].classList.add('on'); d[slide].classList.add('on');
+    }, 5000);
+  }
+
+  // ---------- categories ----------
+  function renderCats() {
+    $('cats').innerHTML = CATS.map(c => `<div class="cat ${cat === c.id ? 'on' : ''}" data-c="${c.id}"><span>${c.icon}</span>${c.id}</div>`).join('');
+    $('cats').querySelectorAll('.cat').forEach(e => e.onclick = () => { cat = cat === e.dataset.c ? '' : e.dataset.c; wishOnly = false; render(); });
+  }
+
+  // ---------- product cards ----------
+  function card(p) {
+    const fp = finalPrice(p), out = p.stock <= 0;
+    return `<div class="card ${out ? 'oos' : ''}">
+      ${p.discount > 0 ? `<span class="off">${p.discount}% OFF</span>` : ''}
+      <button class="heart" data-w="${p.id}">${wish.includes(p.id) ? '❤️' : '🤍'}</button>
+      <div class="im" data-o="${p.id}"><img loading="lazy" src="${imgOf(p)}" alt="${esc(p.name)}"></div>
+      <h4 data-o="${p.id}">${esc(p.name)}</h4>
+      <div class="meta"><span>${esc(p.storage)}</span><span>⭐ ${p.rating || '4.5'}</span></div>
+      <div class="price">${p.discount > 0 ? `<s>${fmt(p.price, cur)}</s>` : ''}${fmt(fp, cur)}</div>
+      ${p.freeGift ? '<div class="gift">🎁 Free cover + glass</div>' : ''}
+      <div class="row">
+        <button class="btn alt" data-a="${p.id}" ${out ? 'disabled' : ''}>${out ? 'Sold out' : '🛒 Add'}</button>
+        ${p.negotiable ? `<button class="btn wa" data-n="${p.id}">💬 Negotiate</button>` : ''}
+      </div></div>`;
+  }
+  function render() {
+    renderCats();
+    let list = D.products.filter(p => (!cat || p.cat === cat) && (!wishOnly || wish.includes(p.id)) &&
+      (!q || (p.name + ' ' + p.cat + ' ' + p.storage).toLowerCase().includes(q)));
+    let h = '';
+    if (!cat && !q && !wishOnly) {
+      const ph1 = list.filter(p => p.cat === 'Phones'), acc = list.filter(p => p.cat !== 'Phones');
+      if (ph1.length) h += `<div class="sec"><h3>Featured Phones</h3><a data-f="Phones">View All ›</a></div><div class="grid">${ph1.map(card).join('')}</div>`;
+      if (acc.length) h += `<div class="sec"><h3>Accessories</h3></div><div class="grid">${acc.map(card).join('')}</div>`;
+    } else {
+      h += `<div class="sec"><h3>${wishOnly ? 'Wishlist' : cat || 'Search results'}</h3><a data-f="">Show all ›</a></div>`;
+      h += list.length ? `<div class="grid">${list.map(card).join('')}</div>` : '<div class="empty">Nothing found. Ask us on WhatsApp — we may have it!</div>';
+    }
+    if (!D.products.length) h = '<div class="empty">Products coming soon.</div>';
+    $('results').innerHTML = h;
+    $('results').querySelectorAll('[data-f]').forEach(a => a.onclick = () => { cat = a.dataset.f; wishOnly = false; q = ''; $('q').value = ''; render(); });
+    renderFree();
+  }
+  function renderFree() {
+    const o = D.offers.find(x => x.type === 'free' && x.active);
+    const acc = D.products.filter(p => p.cat === 'Cover').concat(D.products.filter(p => p.cat !== 'Cover' && p.cat !== 'Phones')).slice(0, 5);
+    if (!o || !acc.length) { $('freeBanner').innerHTML = ''; return; }
+    $('freeBanner').innerHTML = `<div class="free" style="margin-top:18px"><div class="pics">${acc.map(p => `<img src="${imgOf(p)}" alt="${esc(p.name)}" data-o="${p.id}">`).join('')}</div>
+      <div style="max-width:46%"><h3>${esc(o.title)}</h3><p>${esc(o.text)}</p><button class="btn sm" id="freeShop">Shop Now</button></div></div>`;
+    $('freeShop').onclick = () => { cat = 'Cover'; wishOnly = false; render(); $('results').scrollIntoView({ behavior: 'smooth' }); };
+  }
+
+  // ---------- events on grid (delegated) ----------
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-w],[data-a],[data-n],[data-o]');
+    if (!t) return;
+    if (t.dataset.w) { const id = t.dataset.w; wish = wish.includes(id) ? wish.filter(x => x !== id) : wish.concat(id); saveWish(); render(); }
+    else if (t.dataset.a) addCart(t.dataset.a);
+    else if (t.dataset.n) location.href = negotiateLink(byId(t.dataset.n));
+    else if (t.dataset.o) openProd(t.dataset.o);
+  });
+  $('q').oninput = e => { q = e.target.value.trim().toLowerCase(); render(); };
+  $('nHome').onclick = () => { cat = ''; q = ''; $('q').value = ''; wishOnly = false; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  $('nWish').onclick = () => { wishOnly = true; cat = ''; render(); $('results').scrollIntoView({ behavior: 'smooth' }); };
+
+  // ---------- cart ----------
+  function cartBadge() { const n = Object.values(cart).reduce((a, b) => a + b, 0); $('cnt1').textContent = $('cnt2').textContent = n; $('cnt1').style.display = $('cnt2').style.display = n ? '' : 'none'; }
+  function addCart(id) { cart[id] = (cart[id] || 0) + 1; saveCart(); toast('Added to cart ✓'); }
+  const lines = () => Object.keys(cart).map(id => ({ p: byId(id), n: cart[id] })).filter(x => x.p);
+  const total = () => lines().reduce((a, x) => a + finalPrice(x.p) * x.n, 0);
+  function openCart() {
+    const L = lines();
+    $('cartBody').innerHTML = L.length ? L.map(({ p, n }) => `<div class="ci"><img src="${imgOf(p)}" alt=""><div class="t"><b>${esc(p.name)} ${esc(p.storage)}</b>${fmt(finalPrice(p), cur)}${p.discount > 0 ? ` <small style="color:var(--red)">(${p.discount}% off)</small>` : ''}
+      <div class="qty"><button data-q="-1" data-id="${p.id}">−</button><span>${n}</span><button data-q="1" data-id="${p.id}">+</button><button data-rm="${p.id}" style="margin-left:auto;width:auto;padding:0 8px;color:var(--red)">Remove</button></div></div></div>`).join('') +
+      `<div style="display:grid;gap:8px;margin-top:14px"><input id="cName" placeholder="Your name (optional)"><input id="cOffer" inputmode="numeric" placeholder="Your offer price for the whole order (optional)"><textarea id="cNote" placeholder="Note: phone model for cover, colour, delivery place…"></textarea></div>`
+      : '<div class="empty">Your cart is empty.<br>Add products and send them to us on WhatsApp.</div>';
+    $('cartFoot').innerHTML = L.length ? `<div class="tot"><span>Total</span><span>${fmt(total(), cur)}</span></div>
+      <button class="btn wa block" id="bOrder">💬 Order on WhatsApp</button>
+      <button class="btn alt block" id="bNeg">🤝 Negotiate price on WhatsApp</button>
+      <div class="note">WhatsApp opens with your selected items and photo links. Final price and payment are confirmed in chat.</div>` : '';
+    $('cartBody').querySelectorAll('[data-q]').forEach(b => b.onclick = () => { const id = b.dataset.id; cart[id] = Math.max(1, cart[id] + Number(b.dataset.q)); saveCart(); keepForm(openCart); });
+    $('cartBody').querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { delete cart[b.dataset.rm]; saveCart(); keepForm(openCart); });
+    if (L.length) { $('bOrder').onclick = () => send(false); $('bNeg').onclick = () => send(true); }
+    $('cartOv').classList.add('open');
+  }
+  function keepForm(fn) { const v = ['cName', 'cOffer', 'cNote'].map(i => ($(i) || {}).value); fn(); ['cName', 'cOffer', 'cNote'].forEach((i, k) => { if ($(i) && v[k]) $(i).value = v[k]; }); }
+  const prodLink = p => siteUrl() + '?p=' + encodeURIComponent(p.id);
+  function itemLine(p, n, i) {
+    const im = p.images && p.images[0] && /^https?:/.test(p.images[0]) ? '\n   🖼 Photo: ' + p.images[0] : '';
+    return `${i}. ${p.name}${p.storage ? ' ' + p.storage : ''} × ${n} — ${fmt(finalPrice(p), cur)}${p.discount > 0 ? ` (${p.discount}% off, was ${fmt(p.price, cur)})` : ''}${im}\n   🔗 See item: ${prodLink(p)}`;
+  }
+  function send(neg) {
+    const L = lines(), name = ($('cName').value || '').trim(), offer = ($('cOffer').value || '').replace(/\D/g, ''), note = ($('cNote').value || '').trim();
+    let m = S.msgIntro + '\n' + (neg ? 'I want to NEGOTIATE the price for these items:' : 'I want to ORDER these items:') + '\n\n';
+    m += L.map((x, i) => itemLine(x.p, x.n, i + 1)).join('\n') + '\n\nTotal: ' + fmt(total(), cur);
+    if (offer) m += '\nMy offer: ' + fmt(offer, cur);
+    if (name) m += '\nName: ' + name;
+    if (note) m += '\nNote: ' + note;
+    m += '\n\nPlease confirm availability, final price and payment method. Thank you!';
+    window.open(waLink(S.whatsapp, m), '_blank');
+  }
+  function negotiateLink(p) {
+    return waLink(S.whatsapp, `${S.msgIntro}\nI am interested in:\n${itemLine(p, 1, 1)}\n\nCan we negotiate the price? My offer: NRS ____`);
+  }
+  $('cartTop').onclick = $('nCart').onclick = $('nPlus').onclick = openCart;
+  $('cartClose').onclick = () => $('cartOv').classList.remove('open');
+  $('cartOv').onclick = e => { if (e.target === $('cartOv')) $('cartOv').classList.remove('open'); };
+
+  // ---------- product modal ----------
+  function openProd(id) {
+    const p = byId(id); if (!p) return;
+    const imgs = (p.images && p.images.length ? p.images : [imgOf(p)]);
+    $('prodBox').innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:17px">${esc(p.name)} ${esc(p.storage)}</b><button id="pClose" style="font-size:20px">✕</button></div>
+      <img class="main-im" id="mainIm" src="${imgs[0]}" alt="">
+      ${imgs.length > 1 ? `<div class="gal">${imgs.map(s => `<img src="${s}" data-s alt="">`).join('')}</div>` : ''}
+      <div class="price" style="text-align:left;font-size:20px;margin:8px 0">${p.discount > 0 ? `<s>${fmt(p.price, cur)}</s>` : ''}${fmt(finalPrice(p), cur)} ${p.discount > 0 ? `<small style="color:var(--red)">${p.discount}% OFF</small>` : ''}</div>
+      <p style="font-size:14px;margin-bottom:6px">${esc(p.desc)}</p>
+      <p class="note">${p.stock > 0 ? (p.stock <= 5 ? '⚠️ Only ' + p.stock + ' left' : '✅ In stock') : '❌ Out of stock — ask us on WhatsApp'} · ⭐ ${p.rating || '4.5'}${p.freeGift ? ' · 🎁 Free cover + tempered glass' : ''}</p>
+      <div style="display:grid;gap:8px;margin-top:12px"><button class="btn block" id="pAdd">🛒 Add to cart</button>
+      <a class="btn wa block" style="text-decoration:none" href="${negotiateLink(p)}" target="_blank" rel="noopener">💬 Negotiate / Order on WhatsApp</a></div>`;
+    $('prodOv').classList.add('open');
+    $('pClose').onclick = () => $('prodOv').classList.remove('open');
+    $('pAdd').onclick = () => { addCart(p.id); };
+    $('prodBox').querySelectorAll('[data-s]').forEach(i => i.onclick = () => { $('mainIm').src = i.src; });
+  }
+  $('prodOv').onclick = e => { if (e.target === $('prodOv')) $('prodOv').classList.remove('open'); };
+
+  // ---------- start ----------
+  cartBadge(); renderHero(); render();
+  const pid = new URLSearchParams(location.search).get('p');
+  if (pid) openProd(pid);
+})();
+
+</script>
+</body>
+</html>
